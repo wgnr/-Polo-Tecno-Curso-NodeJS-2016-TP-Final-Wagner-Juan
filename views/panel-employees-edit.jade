@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+  p=JSON.stringify(person)
+  form(action='',method='post')
+    div
+      label(for='fname') First Name:
+      input(type='text', name='fname', id='fname', placeholder='Employee-s first name', value=person.firstName)
+    div
+      label(for='lname') Last Name:
+      input(type='text', name='lname', id='lname', placeholder='Employee-s last name!', value=person.lastName)
+    div
+      label(for='email') E-Mail:
+      input(type='text', name='email', id='email', placeholder='email goes here...', value=person.email)
+    div
+      input(type='submit', value='Modify Info!')
+  style.
+    form label { min-width: 80px; display: inline-block; }
+    form > div { padding: 5px; }

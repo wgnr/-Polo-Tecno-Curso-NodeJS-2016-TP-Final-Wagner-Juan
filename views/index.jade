@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  head
+    meta(charset='utf-8')
+    | &#x9;
+    title tp NodeJS (???)
+    // Latest compiled and minified CSS
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7', crossorigin='anonymous')
+    // Thank you little dirty bottstrap strap trap pap
+  body
+    .jumbotron
+      .container
+        h1 Employee Wiki
+        | &#x9;&#x9;&#x9;
+        p Welcome to Employee Wiki
+        | &#x9;&#x9;&#x9;
+        form.navbar-form.navbar-left(role='search')
+          .form-group
+            input.form-control(type='text', placeholder='Search')
+          | &#x9;&#x9;&#x9;&#x9;
+          button.btn.btn-default(type='submit') Submit
+    .container
+      .row
+      - persons.forEach(function(v,i){
+        .col-sm-6.col-md-4
+          .thumbnail
+            img(src="http://www.creattor.com/files/54/2946/south-park-icons-screenshots-12.png", alt='...')
+            | &#x9;&#x9;&#x9;&#x9;
+            .caption
+              h2 #{v.lastName}, #{v.firstName}
+              | &#x9;&#x9;&#x9;&#x9;&#x9;
+              p
+                a(href='mailto:'+ v.email) #{v.email}
+      - });
