@@ -117,7 +117,8 @@ app.get('/employee/search/:keyword', function(req, res){
 	Persons.find({ $or:[{firstName: re}, {lastName: re}, {email: re} ]},'firstName lastName email' ,function(err, doc){
  //Persons.findOne({ lastName: req.params.keyword}, 'firstName lastName email', function(err, doc){
       if(!err){
-            res.render('JSONpeel', {person: doc});
+            //res.render('JSONpeel', {person: doc});
+		res.json(doc);
         } else {
             res.end(err);    
         }    

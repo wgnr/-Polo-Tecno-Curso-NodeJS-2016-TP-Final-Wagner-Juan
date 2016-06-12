@@ -7,6 +7,7 @@ block content
     title tp NodeJS (???)
     // Latest compiled and minified CSS
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7', crossorigin='anonymous')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js')
     // Thank you little dirty bottstrap strap trap pap
   body
     .jumbotron
@@ -17,19 +18,23 @@ block content
         | &#x9;&#x9;&#x9;
         form.navbar-form.navbar-left(role='search')
           .form-group
-            input.form-control(type='text', placeholder='Search')
+            input#caja-de-texto.form-control(type='text', placeholder='Search')
           | &#x9;&#x9;&#x9;&#x9;
-          button.btn.btn-default(type='submit') Submit
+          button#botontulintulin.btn.btn-default(type='submit') Submit
     .container
-      .row
-      - persons.forEach(function(v,i){
-        .col-sm-6.col-md-4
-          .thumbnail
-            img(src="http://www.creattor.com/files/54/2946/south-park-icons-screenshots-12.png", alt='...')
-            | &#x9;&#x9;&#x9;&#x9;
-            .caption
-              h2 #{v.lastName}, #{v.firstName}
-              | &#x9;&#x9;&#x9;&#x9;&#x9;
-              p
-                a(href='mailto:'+ v.email) #{v.email}
-      - });
+      #contenido.row
+  script.
+    $(document).ready(function(){
+    $("#botontulintulin").click(function(){
+    alert("estoy dentro");
+    $.getJSON('/employee/search/' + $("#caja-de-texto").val(), function(jd) {
+    if (jd.length>0){
+    $("#contenido").html("");
+    for(var j = 0 ; j<jd.length;j++){
+    $("#contenido").append('<div class="col-sm-6 col-md-4"><div class="thumbnail "><img src="http://www.creattor.com/files/54/2946/south-park-icons-screenshots-12.png" alt="..."><div class="caption"><h2>' + jd[j].lastName + ', ' + jd[j].firstName + '</h2><p><a href="mailto:' + jd[j].email + '">Correo !!</a></p>  </div></div></div>');
+    }
+    }
+    });
+    alert("termine");
+    });
+    });
